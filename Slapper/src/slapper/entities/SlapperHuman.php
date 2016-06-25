@@ -10,8 +10,8 @@ class SlapperHuman extends HumanNPC implements SlapperEntity
 
     public function spawnTo(Player $player)
     {
-        if ($player !== $this and !isset($this->hasSpawned[$player->getLoaderId()])) {
-            $this->hasSpawned[$player->getLoaderId()] = $player;
+        if ($player !== $this and !isset($this->hasSpawned[$player->getId()])) {
+            $this->hasSpawned[$player->getId()] = $player;
 
             $uuid = $this->getUniqueId();
             $entityId = $this->getId();
@@ -30,8 +30,8 @@ class SlapperHuman extends HumanNPC implements SlapperEntity
                 2 => [4, str_ireplace("{name}", $player->getName(), str_ireplace("{display_name}", $player->getDisplayName(), $player->hasPermission("slapper.seeId") ? $this->getDataProperty(2) . "\n" . \pocketmine\utils\TextFormat::GREEN . "Entity ID: " . $entityId : $this->getDataProperty(2)))],
                 3 => [0, $this->getDataProperty(3)],
                 15 => [0, 1],
-		23 => [7, -1],
-		24 => [0, 0]
+                23 => [7, -1],
+                24 => [0, 0]
             ];
             $player->dataPacket($pk);
 
